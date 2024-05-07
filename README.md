@@ -25,7 +25,7 @@ Um simples sistema de gerenciamento de pessoas, construído com Spring Boot, que
 
 4. Execute o aplicativo Spring Boot. Isso pode ser feito executando a classe `PeopleApplication.java` como uma aplicação Java.
 
-5. O aplicativo estará disponível em `http://localhost:8080`.
+5. O aplicativo estará disponível em `http://localhost:8080/h2-ui`.
 
 ## Endpoints Disponíveis
 
