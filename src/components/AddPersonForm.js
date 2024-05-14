@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from '../src/services/api';
+import api from './services/api';  // Assegure-se de que o caminho está correto
 
 const AddPersonForm = () => {
     const [formData, setFormData] = useState({ name: '', cpf: '', age: '' });
@@ -7,9 +7,9 @@ const AddPersonForm = () => {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-            await api.post('/people', formData);
+            const response = await api.post('/people', formData);
+            console.log('Person added successfully', response.data);
             alert('Person added successfully!');
-            // Optionally, clear form fields
             setFormData({ name: '', cpf: '', age: '' });
         } catch (error) {
             console.error('Error adding person:', error);

@@ -1,0 +1,17 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AddPersonForm from './AddPersonForm';
+import PersonList from './PersonList';
+
+function App() {
+    return (
+        <Router>
+            <div>
+                <Switch>
+                    <Route path="/add-person" component={AddPersonForm} />
+                    <Route path="/list-people" component={PersonList} />
+                    <Route path="/" component={Home} />
+                </Switch>
+            </div>
+        </Router>
+    );
+}
