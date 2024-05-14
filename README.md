@@ -55,8 +55,8 @@ Um simples sistema de gerenciamento de pessoas, construído com React no fronten
 
 ## Capturas de Tela
 
-![Tela de Adição e Visualização de Pessoa](![image](https://github.com/Psiyllo/Estudo-java/assets/166714883/c17c2b8a-07c7-4039-89ef-f99bfea84fb4)
-)
+![Tela de Adição e Visualização de Pessoa](![Captura de tela 2024-05-14 113736](https://github.com/Psiyllo/Estudo-java/assets/166714883/846db023-6d06-40f8-a35c-bbfbef28c4bb)
+
 *Adicione uma nova pessoa fornecendo o nome, CPF e idade.*
 
 ## Estrutura do Projeto
