@@ -19,9 +19,11 @@ const PersonDetails = ({ id }) => {
     return (
         <div>
             <h2>Person Details</h2>
-            <p>Name: {person.name}</p>
+            <p>First Name: {person.firstName}</p>
+            <p>Last Name: {person.lastName}</p>
             <p>CPF: {person.cpf}</p>
             <p>Age: {person.age}</p>
+            <p>Telephone: {person.telephone}</p>
         </div>
     );
 };

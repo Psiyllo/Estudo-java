@@ -22,7 +22,7 @@ const PersonList = () => {
             <ul>
                 {people.map(person => (
                     <li key={person.id}>
-                        {person.name} - {person.age} years old
+                        {person.firstName} {person.lastName} - {person.age} years old
                     </li>
                 ))}
             </ul>

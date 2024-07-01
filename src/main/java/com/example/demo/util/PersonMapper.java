@@ -13,9 +13,11 @@ public class PersonMapper {
 
     public Person toPerson(PersonRequestDTO personDTO) {
         return Person.builder()
-                .name(personDTO.getFirstName() + " " + personDTO.getLastName())
+                .firstname(personDTO.getFirstName())
+                .lastname(personDTO.getLastName())
                 .cpf(personDTO.getCpf())
                 .age(personDTO.getAge())
+                .telephone(personDTO.getTelephone())
                 .build();
     }
 
@@ -28,9 +30,11 @@ public class PersonMapper {
     }
 
     public void updatePersonData(Person person, PersonRequestDTO personDTO) {
-        person.setName(personDTO.getFirstName() + " " + personDTO.getLastName());
+        person.setFirstname(personDTO.getFirstName());
+        person.setLastname(personDTO.getLastName());
         person.setCpf(personDTO.getCpf());
         person.setAge(personDTO.getAge());
+        person.setTelephone(personDTO.getTelephone());
     }
 
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import api from './services/api';
 
 const AddPersonForm = () => {
-    const [formData, setFormData] = useState({ firstName: '', lastName: '', cpf: '', age: '', phone: '' });
+    const [formData, setFormData] = useState({ firstName: '', lastName: '', cpf: '', age: '', telephone: '' });
     const [cpfError, setCpfError] = useState('');
 
     const handleSubmit = async e => {
@@ -15,7 +15,7 @@ const AddPersonForm = () => {
             const response = await api.post('/people', formData);
             console.log('Person added successfully', response.data);
             alert('Person added successfully!');
-            setFormData({ firstName: '', lastName: '', cpf: '', age: '', phone: '' });
+            setFormData({ firstName: '', lastName: '', cpf: '', age: '', telephone: '' });
             setCpfError('');
         } catch (error) {
             console.error('Error adding person:', error);
@@ -53,8 +53,8 @@ const AddPersonForm = () => {
                 {cpfError && <p style={{ color: 'red' }}>{cpfError}</p>}
                 <label>Age:</label>
                 <input type="number" name="age" value={formData.age} onChange={handleChange} required />
-                <label>Phone:</label>
-                <input type="text" name="phone" value={formData.phone} onChange={handleChange} required />
+                <label>Telephone:</label>
+                <input type="text" name="telephone" value={formData.telephone} onChange={handleChange} required />
                 <button type="submit">Add Person</button>
             </form>
         </div>

@@ -16,8 +16,11 @@ public class Person {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "first name", nullable = false)
+    private String firstname;
+
+    @Column(name = "last name", nullable = false)
+    private String lastname;
 
     @Column(name = "cpf", nullable = false, unique = true)
     private String cpf;
@@ -25,11 +28,16 @@ public class Person {
     @Column(name = "age", nullable = false)
     private Integer age;
 
+    @Column(name = "telephone", nullable = false)
+    private Long telephone;
+
     @Builder
-    public Person(String name, String cpf, Integer age) {
-        this.name = name;
+    public Person(String firstname,String lastname, String cpf, Integer age, Long telephone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.cpf = cpf;
         this.age = age;
+        this.telephone = telephone;
     }
 
 }

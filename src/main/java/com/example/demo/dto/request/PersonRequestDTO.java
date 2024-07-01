@@ -25,6 +25,6 @@ public class PersonRequestDTO {
     @PositiveOrZero(message = "A idade deve ser zero ou um número positivo")
     private Integer age;
 
-    @NotBlank(message = "O telefone não pode estar em branco")
-    private String phone;
+    @NotNull (message = "Telephone number must not be null")
+    private Long telephone;
 }

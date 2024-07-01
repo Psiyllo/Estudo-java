@@ -2,11 +2,10 @@ import './styles.css';
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 
-
 function App() {
     const [people, setPeople] = useState([]);
     const [edit, setEdit] = useState(false);
-    const [formData, setFormData] = useState({ id: '', name: '', cpf: '', age: '' });
+    const [formData, setFormData] = useState({ id: '', firstName: '', lastName: '', cpf: '', age: '', telephone: '' });
     const [cpfError, setCpfError] = useState('');
 
     useEffect(() => {
@@ -16,7 +15,7 @@ function App() {
     const fetchPeople = () => {
         api.get('/people')
             .then(response => setPeople(response.data))
-            .catch(error => console.error("Erro ao buscar pessoas", error));
+            .catch(error => console.error("Error fetching people", error));
     };
 
     const handleAdd = (e) => {
@@ -26,43 +25,47 @@ function App() {
             return;
         }
         const payload = {
-            name: formData.name,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
             cpf: formData.cpf,
-            age: parseInt(formData.age, 10)
+            age: parseInt(formData.age, 10),
+            telephone: formData.telephone
         };
         api.post('/people', payload)
             .then(() => {
                 fetchPeople();
-                setFormData({ id: '', name: '', cpf: '', age: '' });
+                setFormData({ id: '', firstName: '', lastName: '', cpf: '', age: '', telephone: '' });
                 setCpfError('');
             })
-            .catch(error => console.error("Erro ao adicionar pessoa", error));
+            .catch(error => console.error("Error adding person", error));
     };
 
     const handleEdit = (person) => {
         setEdit(true);
-        setFormData({ id: person.id, name: person.name, cpf: person.cpf, age: person.age.toString() });
+        setFormData({ id: person.id, firstName: person.firstName, lastName: person.lastName, cpf: person.cpf, age: person.age.toString(), telephone: person.telephone });
     };
 
     const handleUpdate = (e) => {
         e.preventDefault();
         api.put(`/people/${formData.id}`, {
-            name: formData.name,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
             cpf: formData.cpf,
-            age: parseInt(formData.age, 10)
+            age: parseInt(formData.age, 10),
+            telephone: formData.telephone
         })
             .then(() => {
                 fetchPeople();
                 setEdit(false);
-                setFormData({ id: '', name: '', cpf: '', age: '' });
+                setFormData({ id: '', firstName: '', lastName: '', cpf: '', age: '', telephone: '' });
             })
-            .catch(error => console.error("Erro ao atualizar pessoa", error));
+            .catch(error => console.error("Error updating person", error));
     };
 
     const handleDelete = (id) => {
         api.delete(`/people/${id}`)
             .then(() => fetchPeople())
-            .catch(error => console.error("Erro ao deletar pessoa", error));
+            .catch(error => console.error("Error deleting person", error));
     };
 
     const handleChange = (e) => {
@@ -80,31 +83,39 @@ function App() {
         <div className="container">
             <h1>Person Management System</h1>
             <form onSubmit={edit ? handleUpdate : handleAdd}>
-                <label>Name:</label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" required />
+                <label>First Name:</label>
+                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" required />
+                <label>Last Name:</label>
+                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" required />
                 <label>CPF:</label>
                 <input type="text" name="cpf" value={formData.cpf} onChange={handleChange} placeholder="CPF" required />
                 {cpfError && <p style={{ color: 'red' }}>{cpfError}</p>}
                 <label>Age:</label>
                 <input type="number" name="age" value={formData.age} onChange={handleChange} placeholder="Age" required />
+                <label>Telephone:</label>
+                <input type="text" name="telephone" value={formData.telephone} onChange={handleChange} placeholder="Telephone" required />
                 <button type="submit">{edit ? 'Update Person' : 'Add Person'}</button>
             </form>
             <h2>People List</h2>
             <table>
                 <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>CPF</th>
                     <th>Age</th>
+                    <th>Telephone</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {people.map(person => (
                     <tr key={person.id}>
-                        <td>{person.name}</td>
+                        <td>{person.firstName}</td>
+                        <td>{person.lastName}</td>
                         <td>{person.cpf}</td>
                         <td>{person.age}</td>
+                        <td>{person.telephone}</td>
                         <td>
                             <button onClick={() => handleEdit(person)}>Edit</button>
                             <button onClick={() => handleDelete(person.id)}>Delete</button>
