@@ -12,13 +12,11 @@ import java.util.stream.Collectors;
 public class PersonMapper {
 
     public Person toPerson(PersonRequestDTO personDTO) {
-
         return Person.builder()
-                .name(personDTO.getName())
+                .name(personDTO.getFirstName() + " " + personDTO.getLastName())
                 .cpf(personDTO.getCpf())
                 .age(personDTO.getAge())
                 .build();
-
     }
 
     public PersonResponseDTO toPersonDTO(Person person) {
@@ -30,11 +28,9 @@ public class PersonMapper {
     }
 
     public void updatePersonData(Person person, PersonRequestDTO personDTO) {
-
-        person.setName(personDTO.getName());
+        person.setName(personDTO.getFirstName() + " " + personDTO.getLastName());
         person.setCpf(personDTO.getCpf());
         person.setAge(personDTO.getAge());
-
     }
 
 }
